@@ -1,0 +1,9 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1
+Web Service Instance (RecipeWebServiceInstance) in public subnet: It is poor practice to expose application server in public subnet. It should have been in private subnet.
+WebAppSG has also exposed port 22, and port 5000 from any IP on internet. port 22 and other application ports like 5000 should be open strictly from limited resources like load balancer , 
+
+# Poor practice 2
+EC2 instances have open access to all buckets within the account due to "InstanceProfileRole". It a poor practice to allow full access to s3 storage. based on business requirement ec2 instance should have right access only ( through a secure role)  to s3 bucket that is required for business requirement.
+

@@ -1,0 +1,15 @@
+
+# What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+ 1. Add AWS WAF in front of Application LB
+ 2. Move the EC2 instance - WebServiceInstance to private subnet.
+ 3. Expose the service URL via cloudfront.
+
+
+# Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+Yes, private endpoints for S3 will be more secure.
+
+# Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+No, Anything that gets uploaded after applying default encryption will get encrypted.
+
+# What would happen if the original cloud formation templates are applied to this environment.
+CloudFormation will restore the original state of infra, all manual changes to this infra will be lost. 

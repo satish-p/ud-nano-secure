@@ -1,0 +1,20 @@
+# Identify tools that will allow you to do the following:
+
+## Scan infrastructure as code templates
+
+Regula -  It can scan Infra as code (e.g. terraform files) for security and compliance checks and if all checks are passed, code will move to next stage.
+
+### Example vulnerability
+Overly permissive admin acccess
+
+##Scan AMI’s or containers for OS vulnerabilities
+Anchore - open source tool for deep image inspection and vulnerability scanning in container images.
+
+### Example vulnerability
+presence of Secrets and Passwords in the image.
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+AWS config - to check for cloud config and compliance violations post deployment.
+
+### Example vulnerability
+s3 bucket public write is not prohibited

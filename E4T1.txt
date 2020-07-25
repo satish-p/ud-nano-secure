@@ -1,0 +1,15 @@
+
+
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+
+1. Restrict the access on port 22 from internet to the ec2 instance. Current security group "WebAppSG" exposes port 22 to internet. In order to access instance for administration, system architecture should have a provision for bastion host in public subnet. Another workaround could be restricting access to instance on port 22 only from specific IP of administrator but not from internet (0.0.0.0).
+
+2. Move WebServiceInstance to private subnet; allow access to this instance only through public subnet; use NAT for egress and ALB for ingress.
+
+
+
+
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+
+policy - InstanceRolePolicy-C3 allows access to all buckets under the account to EC2 instances attached to this policy. This policy should be more restrictive, and it should specifically allows required operations like GET, PUT etc.  on specific bucket  like <BucketNameRecipesFree>
+With that restriction, even if API key were to compromise, access to <BucketNameRecipesSecret> will not be permitted.

@@ -1,0 +1,28 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+
+Security Hub - CIS 
+=======================
+[CIS.4.1] Ensure no security groups allow ingress from 0.0.0.0/0 to port 22
+[CIS.4.2] Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389
+[CIS.4.3] Ensure the default security group of every VPC restricts all traffic
+
+Remediation: Security Group of EC2 instances e.g  RecipeWebServiceInstance should restrict all traffic from internet on all port except port 5000. Ingress Traffic on port 22 should be restricted from internet and allowed only from 1. bastion host, or  2. admin IP address.
+
+
+AWS Config
+================
+securityhub-alb-http-to-https-redirection-check-b2db147d - HTTP listeners of Application Load Balancers do not have HTTP to HTTPS redirection configured.
+
+Remediation: ALB (c1-web-service-alb) should be congigured to route http request to secure HTTPS protocol. SSL cert set up would be required.
+
+Amazon Inspector
+=================
+High - FTP and Telnet ports (TCP port 20,21 and 23, UDP port 20, 21, 23 ) are reachable from internet.
+
+Remediation: Move EC2 -RecipeWebServiceInstance to private subnet, restrict all port except application port 5000 and ssh connection port 22. If FTP/telnet is required then it should be allowed only from specific source IP but not from internet. 
+
+
+
+
